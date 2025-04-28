@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saavedra's Pokedex</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" 
+  integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sigmar&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="sticky-top">
+    <nav class="container-fluid">
+      <div class="container p-3">
+        <div class="navbar">
+          <div class="navbar-brand d-flex justify-content-center align-items-center gap-4">
+            <img src="/images/8140684.png" alt="logo" class="">
+            <h1 class="logo-title">POKEDEX</h1>
+          </div>
+        
+          <div class="navlinks-container d-flex gap-4">
+              <li class="nav-link"><a href="" id="allNav">All</a></li>
+              <li class="nav-link"><a href="" id="top5Nav">Top 5</a></li>
+              <li class="nav-link">
+                <img src="/images/search-icon-2048x2048-cmujl7en.png" alt="search-icon" class="search-icon">
+              </li>
+          </div>
+      </div>
+    </nav>
+    <div class="searchbar container d-flex justify-content-between d-none">
+      <input type="search" id="fetchPokemonName" placeholder="Enter Pokemon Name" class="search-nav">
+      <button onclick="fetchPokemon()" class="search-nav" id="search-nav">Fetch Pokemon</button><br>
+    </div>
+  </header>
+
+  <main>
+    <div >
+      <img src="/images/1637253517_185329_gif-url.gif" alt="" class="pokemon-gif">
+    </div>
+    
+    <section id="search">
+      <div class="container py-5">
+        <div class="row gap-5 justify-content-center">
+          <div class="card poke-card col-md-3 text-center p-2" onclick="showPokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+            <img src="" alt="Pokemon Sprite" id="pokemonSprite" class="card-img-top sprite">
+            <div class="card-body">
+              <h5 class="card-title" id="pokemonNameDisplay"></h5>
+              <h6 class="card-subtitle mb-2 text-muted" id="pokemonAttr"></h6>
+              <p class="card-text" id="description"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>    
+
+    <section id="top5">
+      <div class="container py-5">
+        <div class="text-center mb-4 pokemon-title">My top 5</div>
+        <div class="row gap-5 justify-content-center">
+          <div class="card poke-card col-md-3 text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+            <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
+            <div class="card-body">
+              <h5 class="card-title name"></h5>
+              <h6 class="attr"></h6>
+              <p class="desc"></p>
+            </div>
+          </div>
+          <div class="card poke-card col-md-3 text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+            <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
+            <div class="card-body">
+              <h5 class="card-title name"></h5>
+              <h6 class="attr"></h6>
+              <p class="desc"></p>
+            </div>
+          </div>
+          <div class="card poke-card col-md-3 text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+            <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
+            <div class="card-body">
+              <h5 class="card-title name"></h5>
+              <h6 class="attr"></h6>
+              <p class="desc"></p>
+            </div>
+          </div>
+          <div class="card poke-card col-md-3 text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+            <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
+            <div class="card-body">
+              <h5 class="card-title name"></h5>
+              <h6 class="attr"></h6>
+              <p class="desc"></p>
+            </div>
+          </div>
+          <div class="card poke-card col-md-3 text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+            <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
+            <div class="card-body">
+              <h5 class="card-title name"></h5>
+              <h6 class="attr"></h6>
+              <p class="desc"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="all">
+      <div class="container py-4">
+        <h2 class="text-center mb-4 pokemon-title">All Pokémon</h2>
+        <div class="loading-spinner">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Loading...">
+        </div>
+        <div class="all-pokemon-grid">
+          <!-- Pokémon cards will be dynamically inserted here -->
+        </div>
+        <div class="pagination">
+          <button id="prevPageBtn" disabled>Previous</button>
+          <span id="pageIndicator">Page 1</span>
+          <button id="nextPageBtn">Next</button>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+  
+  <div id="pokemonModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-inside">
+        <span class="close" id="pokemonModalCloseBtn">&times;</span>
+        <h2 id="modalPokemonName"></h2>
+        <div class="background-sprite">
+          <img id="modalPokemonSprite" src="" alt="Pokemon Sprite">
+        </div>
+        
+        <div class="d-flex justify-content-center align-items-center gap-3">
+          <h5>Type:</h5>
+          <h6 id="modalPokemonAttr"></h6>
+        </div>
+        
+        <p id="modalDescription"></p>
+        <p id="modalPokemonStats"></p>
+      </div>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      $(".search-icon").click(function(){
+        $(".searchbar").toggleClass("d-none");
+      });
+    });
+  </script>
+<!-- JQUERY FOR CHANGING PAGES -->
+  <script>
+    $('a').click(function(e) {
+    e.preventDefault(); // prevent link from refreshing the page
+    });
+    $(document).ready(function () {
+        // Initial visibility setup
+        $('#top5').show();
+        $('#all, #search').hide();
+
+        $('#top5Nav').click(function () {
+            $('#top5').show();
+            $('#all, #search').hide();
+        });
+
+        $('#allNav').click(function () {
+            $('#all').show();
+            $('#top5, #search').hide();
+        });
+
+        $('#search-nav').click(function () {
+            $('#search').show();
+            $('#top5, #all').hide();
+        });
+    });
+  </script>
+</body>
+</html>

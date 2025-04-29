@@ -388,6 +388,19 @@ header nav {
     font-style: italic;
 }
 
+.ability-badge {
+    padding: 0.2em 0.5em;
+    border-radius: 10px;
+    background-color: #2f465a; /* Grey background */
+    color: white;
+    font-size: 0.8em;
+    margin: 0 0.2rem;
+}
+
+#modalPokemonAbilities {
+    margin-top: 0.5rem;
+}
+
 /* Type colors */
 .normal { background-color: #A8A878; }
 .fire { background-color: #F08030; }

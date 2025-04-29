@@ -23,7 +23,7 @@
         
           <div class="navlinks-container d-flex gap-4">
               <li class="nav-link"><a href="" id="allNav">All</a></li>
-              <li class="nav-link"><a href="" id="top5Nav">Top 5</a></li>
+              <li class="nav-link"><a href="" id="top5Nav">Feature</a></li>
               <li class="nav-link">
                 <img src="/images/search-icon-2048x2048-cmujl7en.png" alt="search-icon" class="search-icon">
               </li>
@@ -58,7 +58,7 @@
 
     <section id="top5">
       <div class="container py-5">
-        <div class="text-center mb-4 pokemon-title">My top 5</div>
+        <div class="text-center mb-4 pokemon-title">Feature</div>
         <div class="row row-cols-2 g-5 justify-content-center">
           <div class="col">
             <div class="card poke-card text-center" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
@@ -140,23 +140,34 @@
   
   <div id="pokemonModal" class="modal">
     <div class="modal-content">
-      <div class="modal-inside">
-        <span class="close" id="pokemonModalCloseBtn">&times;</span>
-        <h2 id="modalPokemonName"></h2>
-        <div class="background-sprite">
-          <img id="modalPokemonSprite" src="" alt="Pokemon Sprite">
+        <div class="modal-inside">
+            <span class="close" id="pokemonModalCloseBtn">&times;</span>
+            <h2 id="modalPokemonName"></h2>
+            <div class="background-sprite">
+                <img id="modalPokemonSprite" src="" alt="Pokemon Sprite">
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center gap-3">
+                <h5>Type:</h5>
+                <h6 id="modalPokemonAttr"></h6>
+            </div>
+
+            <div class="d-flex justify-content-around mb-2">
+                <p id="modalPokemonId"></p>
+                <p id="modalPokemonHeight"></p>
+                <p id="modalPokemonWeight"></p>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center abilities">
+                <h5>Abilities:</h5>
+                <p id="modalPokemonAbilities"></p>
+            </div>
+
+            <p id="modalDescription"></p>
+            <p id="modalPokemonStats"></p>
         </div>
-        
-        <div class="d-flex justify-content-center align-items-center gap-3">
-          <h5>Type:</h5>
-          <h6 id="modalPokemonAttr"></h6>
-        </div>
-        
-        <p id="modalDescription"></p>
-        <p id="modalPokemonStats"></p>
-      </div>
     </div>
-  </div>
+</div>
   
   <script src="script.js"></script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>

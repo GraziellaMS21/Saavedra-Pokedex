@@ -70,64 +70,75 @@ async function fetchPokemon() {
 async function showPokemonModal(event) {
   // Get the Pokémon name from the clicked element's data attribute
   const name = event.currentTarget.dataset.pokemonName;
-  
+
   if (!name) {
-    console.error("No Pokémon name found in data attribute");
-    return;
+      console.error("No Pokémon name found in data attribute");
+      return;
   }
 
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-    if (!response.ok) throw new Error("Could not fetch Pokémon data");
-    const data = await response.json();
+      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
+      if (!response.ok) throw new Error("Could not fetch Pokémon data");
+      const data = await response.json();
 
-    const speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
-    if (!speciesResponse.ok) throw new Error("Could not fetch Pokémon species data");
-    const speciesData = await speciesResponse.json();
+      const speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${name}`);
+      if (!speciesResponse.ok) throw new Error("Could not fetch Pokémon species data");
+      const speciesData = await speciesResponse.json();
 
-    const flavorEntry = speciesData.flavor_text_entries.find(entry => entry.language.name === 'en');
-    const descriptionText = flavorEntry ? flavorEntry.flavor_text.replace(/\f/g, ' ') : "Description not available.";
+      const flavorEntry = speciesData.flavor_text_entries.find(entry => entry.language.name === 'en');
+      const descriptionText = flavorEntry ? flavorEntry.flavor_text.replace(/\f/g, ' ') : "Description not available.";
 
-    // Update modal content
-    modalName.textContent = data.name.toUpperCase();
-    modalSprite.src = data.sprites.other["dream_world"].front_default || data.sprites.front_shiny;
-    
-    // Create colored type badges
-    let typesHTML = '';
-    data.types.forEach(type => {
-      const typeName = type.type.name;
-      typesHTML += `<span class="type-badge ${typeName}">${typeName}</span>`;
-    });
-    modalAttr.innerHTML = typesHTML;
-    
-    modalDescription.textContent = descriptionText;
+      // Update modal content
+      modalName.textContent = data.name.toUpperCase();
+      modalSprite.src = data.sprites.other["dream_world"].front_default || data.sprites.front_shiny;
 
-    // Create stat bars
-    let statsHTML = '<div class="stats-container">';
-    data.stats.forEach(stat => {
-      // Calculate bar width percentage (max stat value is typically 255)
-      const percentage = Math.min(100, (stat.base_stat / 255) * 100);
-      
-      statsHTML += `
-        <div class="stat-row">
-          <div class="stat-name">${stat.stat.name}</div>
-          <div class="stat-bar-container">
-            <div class="stat-bar" style="width: ${percentage}%;"></div>
-          </div>
-          <div class="stat-value">${stat.base_stat}</div>
-        </div>
-      `;
-    });
-    statsHTML += '</div>';
-    
-    modalStats.innerHTML = statsHTML;
+      modalPokemonId.textContent = `ID: ${data.id}`;
+      modalPokemonHeight.textContent = `Height: ${data.height / 10} m`;
+      modalPokemonWeight.textContent = `Weight: ${data.weight / 10} kg`;
 
-    // Show the modal
-    modal.style.display = "block";
+      let abilitiesHTML = '';
+      data.abilities.forEach(abilityInfo => {
+          abilitiesHTML += `<span class="ability-badge">${abilityInfo.ability.name}</span>`;
+      });
+      modalPokemonAbilities.innerHTML = abilitiesHTML;
+      modalPokemonAbilities.style.display = 'block'; // Ensure abilities are visible
+
+      // Create colored type badges
+      let typesHTML = '';
+      data.types.forEach(type => {
+          const typeName = type.type.name;
+          typesHTML += `<span class="type-badge ${typeName}">${typeName}</span>`;
+      });
+      modalAttr.innerHTML = typesHTML;
+
+      modalDescription.textContent = descriptionText;
+
+      // Create stat bars
+      let statsHTML = '<div class="stats-container">';
+      data.stats.forEach(stat => {
+          // Calculate bar width percentage (max stat value is typically 255)
+          const percentage = Math.min(100, (stat.base_stat / 255) * 100);
+
+          statsHTML += `
+              <div class="stat-row">
+                  <div class="stat-name">${stat.stat.name}</div>
+                  <div class="stat-bar-container">
+                      <div class="stat-bar" style="width: ${percentage}%;"></div>
+                  </div>
+                  <div class="stat-value">${stat.base_stat}</div>
+              </div>
+          `;
+      });
+      statsHTML += '</div>';
+
+      modalStats.innerHTML = statsHTML;
+
+      // Show the modal
+      modal.style.display = "block";
 
   } catch (error) {
-    console.error("Error fetching details:", error);
-    alert("Could not display Pokémon details.");
+      console.error("Error fetching details:", error);
+      alert("Could not display Pokémon details.");
   }
 }
 
@@ -143,7 +154,7 @@ closeBtn.onclick = function() {
 // Close modal when clicking outside of it
 window.onclick = function(event) {
   if (event.target == modal) {
-    modal.style.display = "none";
+      modal.style.display = "none";
   }
 }
 

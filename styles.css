@@ -18,6 +18,10 @@ body {
     background-color: #e0eef2 !important;
 }
 
+main {
+    padding: 0 1.5rem;
+}
+
 header nav {
     background-color: #3B4CCA;
     color: var(--primary-font-color);
@@ -26,7 +30,8 @@ header nav {
   }
 
   .pokemon-gif {
-    height: 15vh;
+    z-index: 99;
+    height: 5rem;
     width: auto;
     position: fixed;
     bottom: 1rem;
@@ -46,6 +51,12 @@ header nav {
     text-shadow: 1px 1px var(--shadow-color);
 }
 
+@media (max-width: 800px) {
+    .logo-title {
+        display: none;
+    }
+}
+
 .navlinks-container a{
     text-decoration: none;
     letter-spacing: 0.1rem;
@@ -53,7 +64,7 @@ header nav {
     color: var(--primary-font-color);
     font-weight: 900;
     font-size: 1.5rem;
-    padding: 0 20px;
+    padding: 0.5rem 2rem;
     border-radius: 0 20px;
     transition: background-color 0.3s, color 0.3s;
 }
@@ -102,15 +113,13 @@ header nav {
 
 /* CARDS */
 .poke-card {
-    width: 20rem;
+    width: 20rem !important;
     border: 2px solid #333;
     border-radius: 15px;
     box-shadow: 5px 5px 15px #888888;
     transition: transform 0.2s;
     background-color: white;
-    /* Add these for flipping effect */
-    transform-style: preserve-3d;
-    position: relative;
+    margin: 0 2rem;
   }
   
   .poke-card:hover {
@@ -126,7 +135,6 @@ header nav {
     animation: animateBackground 4s ease infinite;
     padding: 10px;
     border-radius: 1rem;
-    overflow: hidden; /* contain sparkles inside */
 }
 
 /* Background flowing animation */
@@ -274,13 +282,12 @@ header nav {
     font-weight: bold;
     color: #607d8b;
     letter-spacing: 1px;
-    margin-bottom: 1rem;
     text-align: center;
 }
 
 /* DESCRIPTION */
 #modalDescription {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #444;
     line-height: 1.4;
     text-align: center;
@@ -295,64 +302,6 @@ header nav {
     font-size: 0.85rem;
     color: #555;
     text-align: center;
-}
-
-/* OPTIONAL: Add a glowing edge */
-.modal-content::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 1.5rem;
-    padding: 5px;
-    background: linear-gradient(45deg, #ffcc00, #ff4081, #00e5ff, #76ff03);
-    background-size: 600% 600%;
-    z-index: -1;
-    filter: blur(8px);
-    animation: borderGlow 10s ease infinite;
-}
-
-@keyframes borderGlow {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-}
-
-/* Example Type Badges (Adapt as needed)  */
-.type-badge {
-    padding: 0.2rem 0.4rem;
-    border-radius: 0.2rem;
-    color: white;
-    font-size: 0.75rem;
-}
-
-.type-grass {
-    background-color: #78c850;
-}
-
-.type-fire {
-    background-color: #f08030;
-}
-
-.type-water {
-    background-color: #6890f0;
-}
-
-
-/* Type badge styling */
-.type-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    margin: 5px 5px 5px 0;
-    border-radius: 20px;
-    color: white;
-    text-shadow: 1px 2px var(--shadow-color);
-    letter-spacing: 2px;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 0.8rem;
 }
 
 /* Stats bars */
@@ -384,7 +333,7 @@ header nav {
 
 .stat-bar {
     height: 100%;
-    background: linear-gradient(#353f4b, #b5b6b8);
+    background: linear-gradient(to right, #353f4b, #b5b6b8);
     border-radius: 10px;
 }
 
@@ -393,6 +342,42 @@ header nav {
     text-align: right;
     padding-left: 10px;
     font-weight: bold;
+}
+
+/* OPTIONAL: Add a glowing edge */
+.modal-content::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    padding: 5px;
+    background: linear-gradient(45deg, #ffcc00, #ff4081, #00e5ff, #76ff03);
+    background-size: 600% 600%;
+    z-index: -1;
+    filter: blur(8px);
+    animation: borderGlow 10s ease infinite;
+}
+
+@keyframes borderGlow {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Type badge styling */
+.type-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    color: white;
+    text-shadow: 1px 2px var(--shadow-color);
+    letter-spacing: 2px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
 }
 
 #modalDescription {
@@ -433,11 +418,12 @@ header nav {
     text-transform: uppercase;
 }
 .all-pokemon-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 15px;
-  padding: 20px;
-}
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    justify-content: center;
+    padding: 10px 0;
+  }
 
 .all-pokemon-card {
     width: 100%;
@@ -535,3 +521,4 @@ header nav {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+

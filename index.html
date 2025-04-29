@@ -59,67 +59,82 @@
     <section id="top5">
       <div class="container py-5">
         <div class="text-center mb-4 pokemon-title">My top 5</div>
-        <div class="row gap-5 justify-content-center">
-          <div class="card poke-card col-md-3 text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
-            <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
-            <div class="card-body">
-              <h5 class="card-title name"></h5>
-              <h6 class="attr"></h6>
-              <p class="desc"></p>
+        <div class="row row-cols-2 g-5 justify-content-center">
+          <div class="col">
+            <div class="card poke-card text-center" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+              <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
+              <div class="card-body">
+                <h5 class="card-title name"></h5>
+                <h6 class="attr"></h6>
+                <p class="desc"></p>
+              </div>
             </div>
           </div>
-          <div class="card poke-card col-md-3 text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
-            <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
-            <div class="card-body">
-              <h5 class="card-title name"></h5>
-              <h6 class="attr"></h6>
-              <p class="desc"></p>
+          <div class="col">
+            <div class="card poke-card text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+              <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
+              <div class="card-body">
+                <h5 class="card-title name"></h5>
+                <h6 class="attr"></h6>
+                <p class="desc"></p>
+              </div>
             </div>
           </div>
-          <div class="card poke-card col-md-3 text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
-            <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
-            <div class="card-body">
-              <h5 class="card-title name"></h5>
-              <h6 class="attr"></h6>
-              <p class="desc"></p>
+          <div class="col">
+            <div class="card poke-card text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+              <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
+              <div class="card-body">
+                <h5 class="card-title name"></h5>
+                <h6 class="attr"></h6>
+                <p class="desc"></p>
+              </div>
             </div>
           </div>
-          <div class="card poke-card col-md-3 text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
-            <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
-            <div class="card-body">
-              <h5 class="card-title name"></h5>
-              <h6 class="attr"></h6>
-              <p class="desc"></p>
+          <div class="col">
+            <div class="card poke-card text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+              <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
+              <div class="card-body">
+                <h5 class="card-title name"></h5>
+                <h6 class="attr"></h6>
+                <p class="desc"></p>
+              </div>
             </div>
           </div>
-          <div class="card poke-card col-md-3 text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
-            <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
-            <div class="card-body">
-              <h5 class="card-title name"></h5>
-              <h6 class="attr"></h6>
-              <p class="desc"></p>
+          <div class="col">
+            <div class="card poke-card text-center p-2" onclick="showTop5PokemonModal(event)" style="cursor: pointer;" data-pokemon-name="">
+              <img src="" alt="Pokemon Sprite" class="card-img-top sprite">
+              <div class="card-body">
+                <h5 class="card-title name"></h5>
+                <h6 class="attr"></h6>
+                <p class="desc"></p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    
 
     <section id="all">
       <div class="container py-4">
         <h2 class="text-center mb-4 pokemon-title">All Pokémon</h2>
-        <div class="loading-spinner">
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Loading...">
+    
+        <div class="d-flex justify-content-center mb-4">
+          <img class="loading-spinner" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Loading..." style="width: 50px; height: 50px;">
         </div>
+    
         <div class="all-pokemon-grid">
           <!-- Pokémon cards will be dynamically inserted here -->
         </div>
-        <div class="pagination">
-          <button id="prevPageBtn" disabled>Previous</button>
-          <span id="pageIndicator">Page 1</span>
-          <button id="nextPageBtn">Next</button>
+    
+        <div class="d-flex flex-wrap justify-content-center align-items-center gap-2 mt-4 pagination">
+          <button id="prevPageBtn" class="btn btn-primary" disabled>Previous</button>
+          <span id="pageIndicator" class="mx-2">Page 1</span>
+          <button id="nextPageBtn" class="btn btn-primary">Next</button>
         </div>
       </div>
     </section>
+    
     
   </main>
   
